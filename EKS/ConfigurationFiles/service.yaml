@@ -5,11 +5,12 @@ metadata:
   labels:
     app: nginx
 spec:
+  type: LoadBalancer
+  selector:
+    app: nginx
   ports:
   - name: http
     port: 80
-    protocol: TCP
     targetPort: 80
-  selector:
-    app: nginx
-  type: LoadBalancer
+    protocol: TCP
+  externalTrafficPolicy: Cluster  # Ensures traffic is handled optimally
